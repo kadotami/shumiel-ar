@@ -158,8 +158,9 @@
       traditional: true,
       dataType: 'json'
     }).done(function(data){
-      console.log(data["Interests"]);
-      var category = max_key(data["Interests"]);
+      console.log(data)
+      console.log(data["interests"]);
+      var category = max_key(data["interests"]);
       console.log(category)
       var model_name = cat_model_map[category]
       console.log(model_name);
