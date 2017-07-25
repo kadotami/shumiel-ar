@@ -8,6 +8,17 @@
 </head>
 <body>
 <script>
+    var model_call = function(model_name){
+        var model = new THREE.JSONLoader();
+        guiter.load("model/"+ model+ ".json", function(geo, mat) {
+            var faceMat = new THREE.MeshFaceMaterial(mat);
+            var model = new THREE.Mesh(geo, faceMat);
+            model.position.set(0, 0, 0);
+            model.scale.set(0.3, 0.3, 0.3);
+            scene.add(model);
+        });
+    }
+
     var prepare_ar = function(category) { 
         var renderer	= new THREE.WebGLRenderer({
             antialias: true,
@@ -101,6 +112,17 @@
         });
     }
 
+    var max_key = function(obj){
+        val = 0;
+        ans = "";
+        Object.keys(obj).forEach(function (key) {
+            if(val < obj[key]){
+                val = obj[key];
+                ans = key;
+            }
+        });
+    }
+
     var getUrlVars = function(){
         var vars = {};
         var param = location.search.substring(1).split('&');
@@ -112,6 +134,15 @@
             if(key != '') vars[key] = decodeURI(val);
         }
         return vars;
+    }
+
+    var cat_model_map = {
+        "スポーツ": "sports",
+        "ゲーム":"game",
+        "旅行":"travel",
+        "音楽":"music",
+        "読書":"book",
+        "グルメ":"gourmet"
     }
     var getVal = getUrlVars();
     var token = getVal["token"];
@@ -127,7 +158,10 @@
       dataType: 'json'
     }).done(function(data){
       console.log(data);
-      prepare_ar(category);
+      var category = max_key(data);
+      var model_name = cat_model_map[category]
+      console.log(model_name);
+      prepare_ar(model_name);
     });
 
     prepare_ar();
