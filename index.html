@@ -8,7 +8,7 @@
 </head>
 <body>
 <script>
-    var model_call = function(model_name){
+    var model_call = function(model_name, scene){
         var model = new THREE.JSONLoader();
         guiter.load("model/"+ model+ ".json", function(geo, mat) {
             var faceMat = new THREE.MeshFaceMaterial(mat);
@@ -19,7 +19,7 @@
         });
     }
 
-    var prepare_ar = function(category) { 
+    var prepare_ar = function(model_name) { 
         var renderer	= new THREE.WebGLRenderer({
             antialias: true,
             alpha: true
@@ -83,17 +83,8 @@
         var ambientLight = new THREE.AmbientLight(0xFFFFCD);　　
         scene.add(directionalLight, ambientLight);
 
-        // category_models.music_model(scene);
-        // category_models.sports_model(scene);
-        // category_models.travel_model(scene);
-        category_models.game_model(scene);
-        // category_models.gourmet_model(scene);
-        // category_models.book_model(scene);
-        
-        // onRenderFcts.push(function(delta){
-        //     mesh.rotation.x += Math.PI*delta
-        // })
-
+        // ３Dモデルの呼び出し
+        model_call(model_name,scene);
 
         onRenderFcts.push(function(){
             renderer.render( scene, camera );
@@ -158,12 +149,8 @@
       traditional: true,
       dataType: 'json'
     }).done(function(data){
-      console.log(data)
-      console.log(data["Interest"]);
       var category = max_key(data["Interest"]);
-      console.log(category)
       var model_name = cat_model_map[category]
-      console.log(model_name);
       prepare_ar(model_name);
     });
 
