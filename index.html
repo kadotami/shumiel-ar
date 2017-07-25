@@ -13,7 +13,7 @@
             var faceMat = new THREE.MeshFaceMaterial(mat);
             var model = new THREE.Mesh(geo, faceMat);
             model.position.set(0, 0, 0);
-            model.scale.set(0.7, 0.7, 0.7);
+            model.scale.set(0.4, 0.4, 0.4);
             scene.add(model);
         });
     }
@@ -155,7 +155,8 @@
       console.log(category);
       var model_name = cat_model_map[category]
       console.log(model_name);
-      prepare_ar(model_name);
+    //   prepare_ar(model_name);
+      prepare_ar("music");
     });
 
 </script>
