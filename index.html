@@ -159,6 +159,7 @@
     }).done(function(data){
       console.log(data);
       var category = max_key(data);
+      console.log(category)
       var model_name = cat_model_map[category]
       console.log(model_name);
       prepare_ar(model_name);
