@@ -116,20 +116,19 @@
     var getVal = getUrlVars();
     var token = getVal["token"];
 
-    // $.ajax({
-    //   type: 'GET',
-    //   url: 'https://shumiel-api.modern-min.net/public/interests',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': token
-    //   },
-    //   traditional: true,
-    //   dataType: 'json'
-    // }).done(function(data){
-    //   console.log(data);
-    //   data
-    //   prepare_ar(category);
-    // });
+    $.ajax({
+      type: 'GET',
+      url: 'https://shumiel-api.modern-min.net/public/interests',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      traditional: true,
+      dataType: 'json'
+    }).done(function(data){
+      console.log(data);
+      prepare_ar(category);
+    });
 
     prepare_ar();
 </script>
