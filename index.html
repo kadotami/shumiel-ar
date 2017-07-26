@@ -18,7 +18,7 @@
         });
     }
 
-    var prepare_ar = function(model_name) { 
+    var prepare_ar = function(model_name) {
         var renderer	= new THREE.WebGLRenderer({
             antialias: true,
             alpha: true
@@ -45,11 +45,11 @@
             onResize()
         })
         function onResize(){
-            arToolkitSource.onResize()	
-            arToolkitSource.copySizeTo(renderer.domElement)	
+            arToolkitSource.onResize()
+            arToolkitSource.copySizeTo(renderer.domElement)
             if( arToolkitContext.arController !== null ){
-                arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
-            }	
+                arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)
+            }
         }
 
         // create atToolkitContext
@@ -65,7 +65,7 @@
         // update artoolkit on every frame
         onRenderFcts.push(function(){
             if( arToolkitSource.ready === false )	return
-            arToolkitContext.update( arToolkitSource.domElement )            
+            arToolkitContext.update( arToolkitSource.domElement )
             scene.visible = camera.visible
         })
 
@@ -78,9 +78,9 @@
         scene.visible = false
 
         // lightの設定
-        var directionalLight = new THREE.DirectionalLight(0xFFFFCD, 0.8);　　
-        directionalLight.position.set(0, 60, 200);　　
-        var ambientLight = new THREE.AmbientLight(0xFFFFCD);　　
+        var directionalLight = new THREE.DirectionalLight(0xFFFFCD, 0.8);
+        directionalLight.position.set(0, 60, 200);
+        var ambientLight = new THREE.AmbientLight(0xFFFFCD);
         scene.add(directionalLight, ambientLight);
 
         // ３Dモデルの呼び出し
